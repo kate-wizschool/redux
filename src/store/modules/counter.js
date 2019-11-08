@@ -2,7 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 
 // 카운터 관련 상태 로직
 const INCREMENT = "counter/INCREMENT";
-const DECREMENT = "counter/INCREMENT";
+const DECREMENT = "counter/DECREMENT";
 
 export const increment = createAction(INCREMENT);
 export const decrement = createAction(DECREMENT);
@@ -18,7 +18,7 @@ export default handleActions(
       return { number: state.number + 1 };
     },
     //action 파라미터를 사용하지 않으므로 생략 가능
-    [INCREMENT]: state => {
+    [DECREMENT]: state => {
       return { number: state.number - 1 };
     }
   },
