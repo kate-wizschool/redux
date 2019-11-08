@@ -1,19 +1,26 @@
+import { createAction, handleActions } from "redux-actions";
+
 // 카운터 관련 상태 로직
 const INCREMENT = "counter/INCREMENT";
 const DECREMENT = "counter/INCREMENT";
 
-export const increment = () => ({ type: INCREMENT });
-export const decrement = () => ({ type: DECREMENT });
+export const increment = createAction(INCREMENT);
+export const decrement = createAction(DECREMENT);
 
 const initialState = {
   number: 0
 };
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case INCREMENT:
+//handleActions (액션처리함수,초기파라미터)
+export default handleActions(
+  {
+    [INCREMENT]: (state, action) => {
       return { number: state.number + 1 };
-    case DECREMENT:
+    },
+    //action 파라미터를 사용하지 않으므로 생략 가능
+    [INCREMENT]: state => {
       return { number: state.number - 1 };
-  }
-}
+    }
+  },
+  initialState
+);
